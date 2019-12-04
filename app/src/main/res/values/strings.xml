@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Ultimate Order</string>
+    <string name="welcome_to_complete_order_app">Welcome to Complete Order App</string>
+    <string name="client">Client</string>
+    <string name="employee">Employee</string>
+    <string name="title_activity_sign_in">SignInActivity</string>
+    <string name="title_activity_client">ClientActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="orders">Orders</string>
+    <string name="menu">Menu</string>
+    <string name="reservations">Reservations</string>
+    <string name="title_activity_waiter">WaiterActivity</string>
+    <string name="see_more">See More</string>
+</resources>
