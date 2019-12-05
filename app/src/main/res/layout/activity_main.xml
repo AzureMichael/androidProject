@@ -7,13 +7,26 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonEmpl"
+        android:layout_width="207dp"
+        android:layout_height="46dp"
+        android:text="@string/employee"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCl"
+        app:layout_constraintVertical_bias="0.04" />
+
+    <Button
+        android:id="@+id/buttonCl"
         android:layout_width="207dp"
         android:layout_height="47dp"
         android:text="@string/client"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.423" />
 </androidx.constraintlayout.widget.ConstraintLayout>
