@@ -7,7 +7,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.ultimateorder.MainActivity;
 import com.example.ultimateorder.R;
 import com.example.ultimateorder.model.MealItem;
 import com.google.android.material.snackbar.Snackbar;
@@ -64,6 +66,9 @@ public class MealItemAdapter extends ArrayAdapter<MealItem> implements View.OnCl
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getContext(), "Item added to order.",
+                        Toast.LENGTH_SHORT).show();
+
                 newOrder.add(currentM);
             }
         });

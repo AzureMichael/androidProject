@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.ultimateorder.MainActivity;
 import com.example.ultimateorder.R;
 import com.example.ultimateorder.adapter.MealItemAdapter;
 import com.example.ultimateorder.model.MealItem;
@@ -96,6 +98,9 @@ public class MenuFragment extends Fragment {
                     });
                 });
                 adapter.newOrder = new ArrayList<>();
+                Toast.makeText(getContext(), "Authentication failed.",
+                        Toast.LENGTH_SHORT).show();
+
             }
         });
 
