@@ -17,9 +17,6 @@ import android.widget.TextView;
 
 import com.example.ultimateorder.R;
 import com.example.ultimateorder.model.OrderItem;
-import com.example.ultimateorder.model.TableItem;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.util.ArrayList;
 
@@ -49,10 +46,10 @@ public class OrderItemAdapter extends ArrayAdapter<OrderItem> implements View.On
 
         TextView id = (TextView)listItem.findViewById(R.id.id);
         id.setText("Order: " + String.valueOf(currentM.getId()));
+      
+        View finalListItem = listItem;
 
-
-
-        TextView totalPrice = (TextView) listItem.findViewById(R.id.total);
+        TextView totalPrice = (TextView) listItem.findViewById(R.id.price);
         totalPrice.setText("Total: " + String.valueOf(currentM.getPrice()));
         listItem.setOnClickListener(this);
         return listItem;

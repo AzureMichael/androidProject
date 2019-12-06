@@ -34,7 +34,9 @@ import java.util.Random;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class MenuFragment extends Fragment {
+
     private List<MealItem> newOrder = new ArrayList<>();
+
     private MealItemRepo repo = new MealItemRepo();
     private MenuViewModel menuViewModel;
     private FirebaseFirestore firebaseFirestore;
@@ -45,6 +47,7 @@ public class MenuFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         menuViewModel =
                 ViewModelProviders.of(this).get(MenuViewModel.class);
+
         firebaseFirestore = FirebaseFirestore.getInstance();
         firebaseFirestore.collection("menu").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
@@ -54,6 +57,7 @@ public class MenuFragment extends Fragment {
                 menuViewModel.setmMealItems(mealItems);
             }
         });
+
         View root = inflater.inflate(R.layout.fragment_menu_client, container, false);
         final TextView textView = root.findViewById(R.id.text_dashboard);
         menuViewModel.getText().observe(this, new Observer<String>() {
@@ -62,6 +66,7 @@ public class MenuFragment extends Fragment {
                 textView.setText(s);
             }
         });
+
         final ListView view = root.findViewById(R.id.list);
         menuViewModel.getmMealItems().observe(this, new Observer<List<MealItem>>() {
             @Override

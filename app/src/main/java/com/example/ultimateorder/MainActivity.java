@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ultimateorder.client.ClientActivity;
+import com.example.ultimateorder.sign_in.ui.SignInActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -27,7 +28,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button clientInButton = findViewById(R.id.button);
+        Button clientInButton = findViewById(R.id.buttonCl);
+
+        Button employeeInButton = findViewById(R.id.buttonEmpl);
 
         clientInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,11 +39,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        employeeInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(), SignInActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void signInAnonymous() {
         firebaseAuth = FirebaseAuth.getInstance();
-        firebaseAuth.signInAnonymously()
+        firebaseAuth.signOut();
+        if (firebaseAuth.getCurrentUser() != null)
+        {
+            firebaseAuth.getCurrentUser().reload();
+        }
+        else firebaseAuth.signInAnonymously()
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
