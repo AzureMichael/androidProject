@@ -37,6 +37,8 @@ public class MenuFragment extends Fragment {
     private MenuViewModel menuViewModel;
     private FirebaseFirestore firebaseFirestore;
     private MealItemAdapter adapter;
+    private Observer<List<MealItem>> newOrderObserver;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         menuViewModel =
@@ -64,8 +66,10 @@ public class MenuFragment extends Fragment {
             public void onChanged(List<MealItem> mealItems) {
                 adapter = new MealItemAdapter((ArrayList<MealItem>) mealItems,getContext());
                 view.setAdapter(adapter);
+
             }
         });
+
 
         Button addNewOrderButton = root.findViewById(R.id.addNewOrderButton);
         addNewOrderButton.setOnClickListener(new View.OnClickListener() {
@@ -79,7 +83,6 @@ public class MenuFragment extends Fragment {
                 });
                 orderItem.setPrice(total.get());
                 orderItem.setId(random.nextInt(1000000000));
-                orderItem.setTableRef(null);
                 firebaseFirestore.collection("orders").document("order"+orderItem.getId()).set(orderItem);
                 Map<String,DocumentReference> documentReferenceMap = new HashMap<>();
                 adapter.newOrder.forEach(mealItem -> {

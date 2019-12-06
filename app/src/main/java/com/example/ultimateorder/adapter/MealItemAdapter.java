@@ -1,7 +1,6 @@
 package com.example.ultimateorder.adapter;
 
 import android.content.Context;
-import android.database.MatrixCursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +25,7 @@ public class MealItemAdapter extends ArrayAdapter<MealItem> implements View.OnCl
         super(context, R.layout.meal_item_layout, data);
         this.mealItems = data;
         this.mContext = context;
+
     }
 
     @Override

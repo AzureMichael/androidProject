@@ -4,12 +4,12 @@ import com.google.firebase.firestore.DocumentReference;
 
 public class OrderItem {
     private Integer id;
-    private DocumentReference tableRef;
+    private DocumentReference table;
     private float price;
 
     public OrderItem(Integer id, DocumentReference table, float price) {
         this.id = id;
-        this.tableRef = table;
+        this.table = table;
         this.price = price;
     }
 
@@ -24,12 +24,12 @@ public class OrderItem {
         this.id = id;
     }
 
-    public DocumentReference getTableRef() {
-        return tableRef;
+    public DocumentReference getTable() {
+        return table;
     }
 
-    public void setTableRef(DocumentReference tableRef) {
-        this.tableRef = tableRef;
+    public void setTable(DocumentReference table) {
+        this.table = table;
     }
 
     public float getPrice() {

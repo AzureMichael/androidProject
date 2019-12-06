@@ -12,8 +12,10 @@ public class MenuViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
     private MutableLiveData<List<MealItem>> mMealItems;
+    private MutableLiveData<Boolean> isNewOrderAvailable;
 
     public MenuViewModel() {
+        isNewOrderAvailable = new MutableLiveData<>();
         mMealItems = new MutableLiveData<>();
         mText = new MutableLiveData<>();
         mText.setValue("This is the Restaurant Menu");
@@ -29,5 +31,13 @@ public class MenuViewModel extends ViewModel {
 
     public void setmMealItems(List<MealItem> mMealItems) {
         this.mMealItems.setValue(mMealItems);
+    }
+
+    public MutableLiveData<Boolean> getIsNewOrderAvailable() {
+        return isNewOrderAvailable;
+    }
+
+    public void setIsNewOrderAvailable(MutableLiveData<Boolean> isNewOrderAvailable) {
+        this.isNewOrderAvailable = isNewOrderAvailable;
     }
 }
