@@ -15,7 +15,7 @@
         android:textColor="@android:color/black" />
 
     <TextView
-        android:id="@+id/tableRef"
+        android:id="@+id/table"
         android:layout_width="67dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/id"
@@ -23,13 +23,13 @@
         android:textColor="@android:color/black" />
 
     <TextView
-        android:id="@+id/total"
+        android:id="@+id/price"
         android:layout_width="67dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tableRef"
+        android:layout_below="@id/table"
         android:layout_marginStart="8dp"
         android:layout_marginTop="-23dp"
-        android:layout_toEndOf="@id/tableRef"
+        android:layout_toEndOf="@id/table"
         android:textColor="@android:color/black" />
 
 </RelativeLayout>
