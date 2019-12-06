@@ -51,7 +51,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void signInAnonymous() {
         firebaseAuth = FirebaseAuth.getInstance();
-        firebaseAuth.signInAnonymously()
+        firebaseAuth.signOut();
+        if (firebaseAuth.getCurrentUser() != null)
+        {
+            firebaseAuth.getCurrentUser().reload();
+        }
+        else firebaseAuth.signInAnonymously()
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {

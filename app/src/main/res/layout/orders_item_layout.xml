@@ -23,7 +23,7 @@
         android:textColor="@android:color/black" />
 
     <TextView
-        android:id="@+id/total"
+        android:id="@+id/price"
         android:layout_width="67dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/tableRef"
