@@ -13,6 +13,7 @@
     <string name="reservations">Reservations</string>
     <string name="title_activity_waiter">WaiterActivity</string>
     <string name="see_more">See More</string>
+
     <string name="email">Email…</string>
     <string name="password">Password…</string>
     <string name="prompt_email">Email</string>
@@ -24,4 +25,7 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="tables">Tables</string>
+
+    <string name="add_new_order">Add New Order</string>
+
 </resources>
