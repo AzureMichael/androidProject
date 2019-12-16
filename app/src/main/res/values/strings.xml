@@ -27,5 +27,7 @@
     <string name="tables">Tables</string>
 
     <string name="add_new_order">Add New Order</string>
+    <string name="app_usage">Use the app as a...</string>
+    <string name="app_logo">App Logo</string>
 
 </resources>
