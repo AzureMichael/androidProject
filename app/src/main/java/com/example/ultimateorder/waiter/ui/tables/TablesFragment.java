@@ -48,7 +48,7 @@ public class TablesFragment extends Fragment {
         });
 
         View root = inflater.inflate(R.layout.tables_fragment_waiter, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
+        final TextView textView = root.findViewById(R.id.text_orders);
 
         tablesViewModel.getText().observe(this, new Observer<String>() {
             @Override

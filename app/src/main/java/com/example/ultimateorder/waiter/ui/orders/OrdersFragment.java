@@ -52,14 +52,6 @@ public class OrdersFragment extends Fragment {
         });
 
         View root = inflater.inflate(R.layout.order_fragment_waiter, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
-
-        ordersViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
 
         final ListView view = root.findViewById(R.id.list);
         ordersViewModel.getmOrderItems().observe(this, new Observer<List<OrderItem>>() {

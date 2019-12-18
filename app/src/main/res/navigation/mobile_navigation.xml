@@ -8,18 +8,18 @@
     <fragment
         android:id="@+id/navigation_orders"
         android:name="com.example.ultimateorder.waiter.ui.orders.OrdersFragment"
-        android:label="@string/title_home"
+        android:label="@string/title_orders"
         tools:layout="@layout/order_fragment_waiter" />
 
     <fragment
         android:id="@+id/navigation_tables"
         android:name="com.example.ultimateorder.waiter.ui.tables.TablesFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/title_Tables"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_reservations"
         android:name="com.example.ultimateorder.waiter.ui.reservations.ReservationsFragment"
-        android:label="@string/title_notifications"
+        android:label="@string/title_reservations"
         tools:layout="@layout/fragment_notifications" />
 </navigation>

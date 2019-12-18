@@ -1,5 +1,8 @@
 package com.example.ultimateorder.model;
 
+import androidx.annotation.NonNull;
+
+import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
 
 public class OrderItem {

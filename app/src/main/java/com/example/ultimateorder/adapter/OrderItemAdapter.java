@@ -13,16 +13,18 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import com.example.ultimateorder.R;
 import com.example.ultimateorder.model.OrderItem;
-
 import java.util.ArrayList;
 
 public class OrderItemAdapter extends ArrayAdapter<OrderItem> implements View.OnClickListener {
     private ArrayList<OrderItem> OrderItems;
-    Context mContext;
+    private Context mContext;
+    private OrderItem currentOrderItem;
 
     public OrderItemAdapter(ArrayList<OrderItem> data, Context context) {
         super(context, R.layout.orders_item_layout, data);
@@ -32,7 +34,7 @@ public class OrderItemAdapter extends ArrayAdapter<OrderItem> implements View.On
 
     @Override
     public void onClick(View v) {
-        openDialog();
+        openDialog(currentOrderItem);
     }
 
     @SuppressLint("SetTextI18n")
@@ -45,24 +47,30 @@ public class OrderItemAdapter extends ArrayAdapter<OrderItem> implements View.On
         OrderItem currentM = OrderItems.get(position);
 
         TextView id = (TextView)listItem.findViewById(R.id.id);
-        id.setText("Order: " + String.valueOf(currentM.getId()));
-      
+        id.setText(" Order #" + String.valueOf(currentM.getId()));
+
+        TextView table = (TextView)listItem.findViewById(R.id.table);
+
+        String[] path = currentM.getTable().getPath().split("/");
+        table.setText("Table: " + String.valueOf(path[1].toString()));
+
         View finalListItem = listItem;
 
         TextView totalPrice = (TextView) listItem.findViewById(R.id.price);
-        totalPrice.setText("Total: " + String.valueOf(currentM.getPrice()));
+        totalPrice.setText("Total: " + String.valueOf(currentM.getPrice()) + " RON");
+        currentOrderItem = currentM;
         listItem.setOnClickListener(this);
         return listItem;
     }
 
-    public void openDialog() {
-
+    @SuppressLint("SetTextI18n")
+    public void openDialog(OrderItem orderItem) {
         AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
 
         // Set Custom Title
         TextView title = new TextView(getContext());
         // Title Properties
-        title.setText("Custom Dialog Box");
+        title.setText("Order info");
         title.setPadding(10, 10, 10, 10);   // Set Position
         title.setGravity(Gravity.CENTER);
         title.setTextColor(Color.BLACK);
@@ -72,14 +80,17 @@ public class OrderItemAdapter extends ArrayAdapter<OrderItem> implements View.On
         // Set Message
         TextView msg = new TextView(getContext());
         // Message Properties
-        //msg.setText("Order: " + orderItem.getId() + "\n" + "Total Price: " + orderItem.getPrice() + "\n");
+        msg.setText("Order: " + orderItem.getId() + "\n" + "Total Price: " + orderItem.getPrice() + " RON\n");
         msg.setGravity(Gravity.CENTER_HORIZONTAL);
         msg.setTextColor(Color.BLACK);
         alertDialog.setView(msg);
 
+        ToggleButton finished = new ToggleButton(getContext());
+        alertDialog.setView(finished);
+
         // Set Button
         // you can more buttons
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK", new DialogInterface.OnClickListener() {
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "SAVE CHANGES", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 // Perform Action on Button
             }

@@ -29,5 +29,8 @@
     <string name="add_new_order">Add New Order</string>
     <string name="app_usage">Use the app as a...</string>
     <string name="app_logo">App Logo</string>
+    <string name="title_orders">Orders</string>
+    <string name="title_Tables">Tables</string>
+    <string name="title_reservations">Reservations</string>
 
 </resources>

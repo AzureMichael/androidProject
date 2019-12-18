@@ -6,7 +6,7 @@
     android:background="#E6E0D2">
 
     <TextView
-        android:id="@+id/text_home"
+        android:id="@+id/text_orders"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -26,6 +26,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_home"
+        app:layout_constraintTop_toBottomOf="@+id/text_orders"
         app:layout_constraintVertical_bias="0.216" />
 </androidx.constraintlayout.widget.ConstraintLayout>
