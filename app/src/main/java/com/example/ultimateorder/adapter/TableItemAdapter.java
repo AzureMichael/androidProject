@@ -125,9 +125,10 @@ public class TableItemAdapter extends ArrayAdapter<TableItem> implements View.On
                         "isOccupied":checkedItems[0],
                         "isReserved": checkedItems[1]
                 });
-                */
-
-                alertDialog.setNegativeButton("CLOSE", new DialogInterface.OnClickListener() {
+                 */
+            }
+        });
+        alertDialog.setNegativeButton("CLOSE", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 // Perform Action on Button
             }
@@ -135,22 +136,5 @@ public class TableItemAdapter extends ArrayAdapter<TableItem> implements View.On
 
         //new Dialog(getContext());
         alertDialog.create().show();
-
-        // Set Properties for OK Button
-        /*
-        final Button okBT = alertDialog.(AlertDialog.BUTTON_NEUTRAL);
-        LinearLayout.LayoutParams neutralBtnLP = (LinearLayout.LayoutParams) okBT.getLayoutParams();
-        neutralBtnLP.gravity = Gravity.FILL_HORIZONTAL;
-        okBT.setPadding(50, 10, 10, 10);   // Set Position
-        okBT.setTextColor(Color.RED);
-        okBT.setLayoutParams(neutralBtnLP);
-
-        final Button cancelBT = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
-        LinearLayout.LayoutParams negBtnLP = (LinearLayout.LayoutParams) okBT.getLayoutParams();
-        negBtnLP.gravity = Gravity.FILL_HORIZONTAL;
-        cancelBT.setTextColor(Color.GRAY);
-        cancelBT.setLayoutParams(negBtnLP);
-
-         */
     }
 }
