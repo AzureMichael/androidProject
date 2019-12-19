@@ -2,31 +2,85 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E6E0D2"
     tools:context=".MainActivity">
 
     <Button
         android:id="@+id/buttonEmpl"
-        android:layout_width="207dp"
-        android:layout_height="46dp"
+        android:layout_width="315dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="22dp"
+        android:backgroundTint="#B9856D"
+        android:drawableEnd="@drawable/waiter"
+        android:gravity="center_vertical"
+        android:paddingStart="40sp"
         android:text="@string/employee"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonCl"
-        app:layout_constraintVertical_bias="0.04" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="RtlSymmetry" />
 
     <Button
         android:id="@+id/buttonCl"
-        android:layout_width="207dp"
-        android:layout_height="47dp"
+        android:layout_width="312dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="132dp"
+        android:backgroundTint="#B9856D"
+        android:drawableEnd="@drawable/client"
+        android:elegantTextHeight="false"
+        android:gravity="center_vertical"
+        android:includeFontPadding="false"
+        android:paddingStart="40sp"
         android:text="@string/client"
+        android:textDirection="ltr"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logoImageView"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="RtlSymmetry" />
+
+    <ImageView
+        android:id="@+id/logoImageView"
+        android:layout_width="354dp"
+        android:layout_height="197dp"
+        android:contentDescription="@string/app_logo"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.395"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.423" />
+        app:layout_constraintVertical_bias="0.087"
+        app:srcCompat="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/appUsageText"
+        android:layout_width="143dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="248dp"
+        android:layout_marginBottom="32dp"
+        android:fontFamily="cursive"
+        android:text="@string/app_usage"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/buttonCl"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.168"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.328" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

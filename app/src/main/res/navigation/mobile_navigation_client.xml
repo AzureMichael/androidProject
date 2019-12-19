@@ -3,20 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_dashboard">
+    app:startDestination="@+id/navigation_tables">
 
     <fragment
-        android:id="@+id/navigation_home"
+        android:id="@+id/navigation_orders"
         android:name="com.example.ultimateorder.client.ui.orders.OrderFragment"
         tools:layout="@layout/fragment_orders_client" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_tables"
         android:name="com.example.ultimateorder.client.ui.menu.MenuFragment"
         tools:layout="@layout/fragment_menu_client" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_reservations"
         android:name="com.example.ultimateorder.client.ui.reservations.ReservationsFragment"
         tools:layout="@layout/fragment_reservations_client" />
 </navigation>

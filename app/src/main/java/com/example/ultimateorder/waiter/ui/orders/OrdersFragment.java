@@ -1,4 +1,4 @@
-package com.example.ultimateorder.waiter.ui.home;
+package com.example.ultimateorder.waiter.ui.orders;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -29,17 +29,17 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment {
+public class OrdersFragment extends Fragment {
     private static final String TAG = "Orders Fragment";
 
     private OrderItemRepo repo = new OrderItemRepo();
-    private HomeViewModel homeViewModel;
+    private OrdersViewModel ordersViewModel;
     private FirebaseFirestore firebaseFirestore;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
+        ordersViewModel =
+                ViewModelProviders.of(this).get(OrdersViewModel.class);
 
         firebaseFirestore = FirebaseFirestore.getInstance();
         firebaseFirestore.collection("orders").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -47,22 +47,14 @@ public class HomeFragment extends Fragment {
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 List<OrderItem> orderItems = new ArrayList<>();
                 orderItems.addAll(queryDocumentSnapshots.toObjects(OrderItem.class));
-                homeViewModel.setmOrderItems(orderItems);
+                ordersViewModel.setmOrderItems(orderItems);
             }
         });
 
         View root = inflater.inflate(R.layout.order_fragment_waiter, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
-
-        homeViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
 
         final ListView view = root.findViewById(R.id.list);
-        homeViewModel.getmOrderItems().observe(this, new Observer<List<OrderItem>>() {
+        ordersViewModel.getmOrderItems().observe(this, new Observer<List<OrderItem>>() {
             @Override
             public void onChanged(List<OrderItem> orderItems) {
                 OrderItemAdapter adapter = new OrderItemAdapter((ArrayList<OrderItem>) orderItems,getContext());
@@ -70,6 +62,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        // when another order is added
         firebaseFirestore.collection("orders")
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override

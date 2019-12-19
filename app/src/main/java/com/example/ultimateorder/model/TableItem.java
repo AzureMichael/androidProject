@@ -1,6 +1,7 @@
 package com.example.ultimateorder.model;
 
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.PropertyName;
 
 public class TableItem {
     private Long id;
@@ -30,6 +31,7 @@ public class TableItem {
         this.id = id;
     }
 
+    @PropertyName("isOccupied")
     public boolean isOccupied() {
         return isOccupied;
     }
@@ -38,6 +40,7 @@ public class TableItem {
         isOccupied = occupied;
     }
 
+    @PropertyName("isReserved")
     public boolean isReserved() {
         return isReserved;
     }

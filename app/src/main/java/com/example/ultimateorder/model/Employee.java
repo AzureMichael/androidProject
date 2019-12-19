@@ -2,13 +2,11 @@ package com.example.ultimateorder.model;
 
 public class Employee {
     private Integer id;
-
     private String username;
     private String type;
 
     public Employee() {
     }
-
 
     public String getType() {
         return type;
@@ -16,6 +14,7 @@ public class Employee {
 
     public void setType(String type) {
         this.type = type;
+    }
 
     public Integer getId() {
         return id;
@@ -33,5 +32,4 @@ public class Employee {
     public void setUsername(String username) {
         this.username = username;
     }
-
 }

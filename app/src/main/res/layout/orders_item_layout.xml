@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:background="#E6E0D2"
     android:orientation="vertical">
 
     <TextView
@@ -10,26 +11,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="12dp"
+        android:background="#975A3F"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/table"
-        android:layout_width="67dp"
+        android:layout_width="123dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/id"
-        android:layout_marginTop="11dp"
-        android:textColor="@android:color/black" />
+        android:layout_marginTop="17dp"
+        android:textColor="@android:color/black"
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/price"
-        android:layout_width="67dp"
+        android:layout_width="121dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/table"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="-23dp"
+        android:layout_marginStart="-123dp"
+        android:layout_marginTop="22dp"
         android:layout_toEndOf="@id/table"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/black"
+        android:textSize="15sp" />
 
 </RelativeLayout>
