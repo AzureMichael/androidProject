@@ -1,4 +1,4 @@
-package com.example.ultimateorder.adapter;
+package com.example.ultimateorder.waiter.adapters;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;

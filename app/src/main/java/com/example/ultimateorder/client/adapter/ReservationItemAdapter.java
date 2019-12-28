@@ -1,4 +1,4 @@
-package com.example.ultimateorder.adapter;
+package com.example.ultimateorder.client.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

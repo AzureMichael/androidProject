@@ -1,4 +1,4 @@
-package com.example.ultimateorder.adapter;
+package com.example.ultimateorder.waiter.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,8 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.ultimateorder.MainActivity;
 import com.example.ultimateorder.R;
+import com.example.ultimateorder.client.ui.menu.MenuViewModel;
 import com.example.ultimateorder.model.MealItem;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -23,7 +23,7 @@ public class MealItemAdapter extends ArrayAdapter<MealItem> implements View.OnCl
     Context mContext;
     public List<MealItem> newOrder = new ArrayList<>();
 
-    public MealItemAdapter(ArrayList<MealItem> data, Context context) {
+    public MealItemAdapter(ArrayList<MealItem> data, Context context, MenuViewModel menuViewModel) {
         super(context, R.layout.meal_item_layout, data);
         this.mealItems = data;
         this.mContext = context;

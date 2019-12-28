@@ -14,7 +14,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.ultimateorder.R;
-import com.example.ultimateorder.adapter.TableItemAdapter;
+import com.example.ultimateorder.waiter.adapters.TableItemAdapter;
 import com.example.ultimateorder.model.TableItem;
 import com.example.ultimateorder.repo.TableItemRepo;
 import com.google.android.gms.tasks.OnSuccessListener;

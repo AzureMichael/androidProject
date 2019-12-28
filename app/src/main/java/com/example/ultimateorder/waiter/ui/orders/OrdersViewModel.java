@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import com.example.ultimateorder.model.OrderItem;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrdersViewModel extends ViewModel {
@@ -13,6 +15,7 @@ public class OrdersViewModel extends ViewModel {
 
     public OrdersViewModel() {
         mOrderItems = new MutableLiveData<>();
+        mOrderItems.setValue(new ArrayList<>());
         mText = new MutableLiveData<>();
         mText.setValue("Orders");
     }
