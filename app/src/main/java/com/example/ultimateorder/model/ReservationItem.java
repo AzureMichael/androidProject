@@ -5,11 +5,13 @@ import com.google.firebase.firestore.DocumentReference;
 import java.util.Date;
 
 public class ReservationItem {
+    private Integer id;
     private String clientName;
     private boolean isConfirmed;
     private Date reservationDate;
     private Integer seatsReserved;
     private DocumentReference table;
+    private String userID;
 
     public ReservationItem() {
     }
@@ -60,5 +62,21 @@ public class ReservationItem {
 
     public void setTable(DocumentReference table) {
         this.table = table;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

@@ -1,0 +1,1014 @@
+Index: app/src/main/res/layout/fragment_orders_client.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_orders_client.xml	(revision 97255ed85dc8ce1b8fa5c6c4b3819de861704493)
++++ app/src/main/res/layout/fragment_orders_client.xml	(date 1576625607891)
+@@ -22,6 +22,7 @@
+         android:id="@+id/list"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
++        android:visibility="visible"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintHorizontal_bias="0.0"
+Index: app/src/main/res/layout/fragment_reservations_client.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_reservations_client.xml	(revision 97255ed85dc8ce1b8fa5c6c4b3819de861704493)
++++ app/src/main/res/layout/fragment_reservations_client.xml	(date 1576764514029)
+@@ -1,6 +1,7 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent">
+ 
+@@ -17,15 +18,27 @@
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent" />
+ 
++    <Button
++        android:id="@+id/addReservationButton"
++        android:layout_width="393dp"
++        android:layout_height="45dp"
++        android:text="@string/add_reservation"
++        app:layout_constraintBottom_toTopOf="@+id/list"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.498"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/text_notifications"
++        app:layout_constraintVertical_bias="0.521" />
++
+     <ListView
+         android:id="@+id/list"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintHorizontal_bias="1.0"
++        app:layout_constraintHorizontal_bias="0.0"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/text_notifications"
+-        app:layout_constraintVertical_bias="0.028" />
++        app:layout_constraintVertical_bias="0.103" />
+ 
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/navigation/mobile_navigation.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/navigation/mobile_navigation.xml	(revision 97255ed85dc8ce1b8fa5c6c4b3819de861704493)
++++ app/src/main/res/navigation/mobile_navigation.xml	(date 1576618119855)
+@@ -7,7 +7,7 @@
+ 
+     <fragment
+         android:id="@+id/navigation_home"
+-        android:name="com.example.ultimateorder.waiter.ui.home.HomeFragment"
++        android:name="com.example.ultimateorder.waiter.ui.home.OrderFragment"
+         android:label="@string/title_home"
+         tools:layout="@layout/order_fragment_waiter" />
+ 
+Index: app/src/main/res/layout/view_reservations_add_dialog.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/view_reservations_add_dialog.xml	(date 1576771545075)
++++ app/src/main/res/layout/view_reservations_add_dialog.xml	(date 1576771545075)
+@@ -0,0 +1,53 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:id="@+id/linear_reservation_dialog"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:orientation="vertical">
++
++    <EditText
++        android:id="@+id/name"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:ems="10"
++        android:inputType="textPersonName"
++        android:text="Name" />
++
++    <EditText
++        android:id="@+id/surname"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:ems="10"
++        android:inputType="textPersonName"
++        android:text="Surname" />
++
++    <EditText
++        android:id="@+id/date"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:ems="10"
++        android:inputType="date"
++        android:text="Date" />
++
++    <EditText
++        android:id="@+id/tableNumber"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:ems="10"
++        android:inputType="number"
++        tools:text="Table Number" />
++
++    <Button
++        android:id="@+id/addReservation"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:text="@string/add_reservation" />
++
++    <Button
++        android:id="@+id/closeReservationDialog"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:text="close" />
++
++</LinearLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/ultimateorder/waiter/adapters/ReservationItemAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/ultimateorder/waiter/adapters/ReservationItemAdapter.java	(date 1576618119556)
++++ app/src/main/java/com/example/ultimateorder/waiter/adapters/ReservationItemAdapter.java	(date 1576618119556)
+@@ -0,0 +1,56 @@
++package com.example.ultimateorder.waiter.adapters;
++
++import android.annotation.SuppressLint;
++import android.content.Context;
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++import android.widget.ArrayAdapter;
++import android.widget.TextView;
++
++import com.example.ultimateorder.R;
++import com.example.ultimateorder.model.ReservationItem;
++
++import java.util.ArrayList;
++
++public class ReservationItemAdapter extends ArrayAdapter<ReservationItem> implements View.OnClickListener {
++    private ArrayList<ReservationItem> reservationItems;
++    Context mContext;
++
++    public ReservationItemAdapter(ArrayList<ReservationItem> data, Context context) {
++        super(context, R.layout.orders_item_layout, data);
++        this.reservationItems = data;
++        this.mContext = context;
++    }
++
++    @Override
++    public void onClick(View v) {
++    }
++
++    private int lastPosition = -1;
++
++    @SuppressLint("SetTextI18n")
++    @Override
++    public View getView(int position, View convertView, ViewGroup parent) {
++        View listItem = convertView;
++        if (listItem == null)
++            listItem = LayoutInflater.from(mContext).inflate(R.layout.reservations_item_layout, parent, false);
++
++        ReservationItem currentM = reservationItems.get(position);
++
++        TextView id = listItem.findViewById(R.id.clientName);
++
++        id.setText("Name: " + currentM.getClientName());
++
++        TextView totalPrice = listItem.findViewById(R.id.reservationDate);
++
++        totalPrice.setText("Date: " + currentM.getReservationDate());
++
++        TextView seats = listItem.findViewById(R.id.seatsReserved);
++
++        seats.setText("Nr. of Seats Reserved: " + currentM.getSeatsReserved());
++
++        return listItem;
++    }
++}
++
+Index: app/src/main/res/layout/meal_item_layout.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/meal_item_layout.xml	(revision 97255ed85dc8ce1b8fa5c6c4b3819de861704493)
++++ app/src/main/res/layout/meal_item_layout.xml	(date 1576622825935)
+@@ -18,10 +18,10 @@
+ 
+     <TextView
+         android:id="@+id/ingredients"
+-        android:layout_width="67dp"
++        android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+-        android:layout_below="@+id/name"
+-        android:layout_marginTop="11dp"
++        android:layout_below="@+id/price"
++        android:layout_marginTop="19dp"
+         android:textColor="@android:color/black" />
+ 
+     <TextView
+@@ -29,7 +29,7 @@
+         android:layout_width="67dp"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/name"
+-        android:layout_marginTop="11dp"
++        android:layout_marginTop="29dp"
+         android:textColor="@android:color/black" />
+ 
+     <Button
+@@ -37,9 +37,9 @@
+         android:layout_width="36dp"
+         android:layout_height="38dp"
+         android:layout_below="@+id/name"
+-        android:layout_marginStart="178dp"
+-        android:layout_marginTop="7dp"
+-        android:layout_toEndOf="@+id/ingredients"
++        android:layout_marginStart="107dp"
++        android:layout_marginTop="21dp"
++        android:layout_toEndOf="@+id/price"
+         android:text="+" />
+ 
+ 
+Index: app/src/main/java/com/example/ultimateorder/client/ui/reservations/ReservationsFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/ultimateorder/client/ui/reservations/ReservationsFragment.java	(revision 97255ed85dc8ce1b8fa5c6c4b3819de861704493)
++++ app/src/main/java/com/example/ultimateorder/client/ui/reservations/ReservationsFragment.java	(date 1576771432301)
+@@ -1,9 +1,18 @@
+ package com.example.ultimateorder.client.ui.reservations;
+ 
++import android.app.AlertDialog;
++import android.app.Dialog;
++import android.content.DialogInterface;
++import android.graphics.Color;
+ import android.os.Bundle;
++import android.text.Layout;
++import android.view.Gravity;
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
++import android.widget.Button;
++import android.widget.EditText;
++import android.widget.LinearLayout;
+ import android.widget.ListView;
+ import android.widget.TextView;
+ 
+@@ -14,14 +23,23 @@
+ import androidx.lifecycle.ViewModelProviders;
+ 
+ import com.example.ultimateorder.R;
+-import com.example.ultimateorder.adapter.ReservationItemAdapter;
++import com.example.ultimateorder.client.adapter.ReservationItemAdapter;
++import com.example.ultimateorder.client.ui.orders.OrderViewModel;
++import com.example.ultimateorder.model.MealItem;
++import com.example.ultimateorder.model.OrderItem;
+ import com.example.ultimateorder.model.ReservationItem;
+ import com.google.android.gms.tasks.OnSuccessListener;
++import com.google.android.material.textfield.TextInputLayout;
++import com.google.firebase.firestore.CollectionReference;
++import com.google.firebase.firestore.DocumentReference;
++import com.google.firebase.firestore.DocumentSnapshot;
+ import com.google.firebase.firestore.FirebaseFirestore;
+ import com.google.firebase.firestore.QuerySnapshot;
+ 
+ import java.util.ArrayList;
+ import java.util.List;
++import java.util.concurrent.atomic.AtomicBoolean;
++import java.util.concurrent.atomic.AtomicReference;
+ 
+ public class ReservationsFragment extends Fragment {
+ 
+@@ -56,7 +74,34 @@
+                 view.setAdapter(reservationItemAdapter);
+             }
+         });
++        final Button addReservationButton = root.findViewById(R.id.addReservationButton);
++        addReservationButton.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                openDialog(v);
++            }
++        });
+ 
+         return root;
+     }
++
++    public void openDialog(View view) {
++        // custom dialog
++        final Dialog dialog = new Dialog(getContext());
++        dialog.setContentView(R.layout.view_reservations_add_dialog);
++        dialog.setTitle("Add New Reservation");
++
++        Button dialogButton = (Button) dialog.findViewById(R.id.closeReservationDialog);
++        // if button is clicked, close the custom dialog
++        dialogButton.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                dialog.dismiss();
++            }
++        });
++
++        dialog.show();
++
++    }
++
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/example/ultimateorder/waiter/adapters/OrderItemAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/ultimateorder/waiter/adapters/OrderItemAdapter.java	(date 1576618119764)
++++ app/src/main/java/com/example/ultimateorder/waiter/adapters/OrderItemAdapter.java	(date 1576618119764)
+@@ -0,0 +1,139 @@
++package com.example.ultimateorder.waiter.adapters;
++
++import android.annotation.SuppressLint;
++import android.app.AlertDialog;
++import android.app.Dialog;
++import android.content.Context;
++import android.content.DialogInterface;
++import android.graphics.Color;
++import android.view.Gravity;
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++import android.widget.ArrayAdapter;
++import android.widget.Button;
++import android.widget.LinearLayout;
++import android.widget.TextView;
++
++import com.example.ultimateorder.R;
++import com.example.ultimateorder.waiter.ui.home.OrderViewModel;
++import com.example.ultimateorder.model.OrderItem;
++import com.google.android.gms.tasks.OnSuccessListener;
++import com.google.firebase.firestore.FirebaseFirestore;
++
++import java.util.ArrayList;
++import java.util.List;
++
++public class OrderItemAdapter extends ArrayAdapter<OrderItem> implements View.OnClickListener {
++    private ArrayList<OrderItem> OrderItems;
++    Context mContext;
++    OrderViewModel orderViewModel;
++
++    public OrderItemAdapter(ArrayList<OrderItem> data, Context context,OrderViewModel orderViewModel) {
++        super(context, R.layout.orders_item_layout, data);
++        this.OrderItems = data;
++        this.mContext = context;
++        this.orderViewModel = orderViewModel;
++    }
++
++    @Override
++    public void onClick(View v) {
++        openDialog(this.orderViewModel,v);
++    }
++
++    @SuppressLint("SetTextI18n")
++    @Override
++    public View getView(int position, View convertView, ViewGroup parent) {
++        View listItem = convertView;
++        if (listItem == null)
++            listItem = LayoutInflater.from(mContext).inflate(R.layout.orders_item_layout, parent, false);
++
++        OrderItem currentM = OrderItems.get(position);
++
++        TextView id = (TextView)listItem.findViewById(R.id.id);
++        id.setText("Order: " + String.valueOf(currentM.getId()));
++      
++        View finalListItem = listItem;
++
++        TextView totalPrice = (TextView) listItem.findViewById(R.id.price);
++        totalPrice.setText("Total: " + String.valueOf(currentM.getPrice()));
++        listItem.setOnClickListener(this);
++        return listItem;
++    }
++
++    public void openDialog(OrderViewModel orderViewModel, View view) {
++        AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
++
++        // Set Custom Title
++        TextView title = new TextView(getContext());
++        // Title Properties
++        title.setText("Custom Dialog Box");
++        title.setPadding(10, 10, 10, 10);   // Set Position
++        title.setGravity(Gravity.CENTER);
++        title.setTextColor(Color.BLACK);
++        title.setTextSize(20);
++        alertDialog.setCustomTitle(title);
++
++        // Set Message
++        TextView msg = new TextView(getContext());
++        // Message Properties
++        //msg.setText("Order: " + orderItem.getId() + "\n" + "Total Price: " + orderItem.getPrice() + "\n");
++        msg.setGravity(Gravity.CENTER_HORIZONTAL);
++        msg.setTextColor(Color.BLACK);
++        alertDialog.setView(msg);
++
++        // Set Button
++        // you can more buttons
++        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "CANCEL", new DialogInterface.OnClickListener() {
++            public void onClick(DialogInterface dialog, int which) {
++                // Perform Action on Button
++                FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
++                firebaseFirestore
++                        .collection("orders")
++                        .document("order" + ((TextView)view.findViewById(R.id.id))
++                                .getText()
++                                .subSequence(0,7)).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
++                    @Override
++                    public void onSuccess(Void aVoid) {
++                        OrderItem orderItem = new OrderItem();
++                        orderItem.setId((Integer.valueOf(((TextView)view.findViewById(R.id.id))
++                                .getText()
++                                .subSequence(0,7).toString())));
++                        orderItem.setPrice(Float.valueOf(((TextView)view.findViewById(R.id.price))
++                                .getText()
++                                .subSequence(5,9).toString()));
++                        List<OrderItem> orderItemList = orderViewModel.getmOrderItems()
++                                .getValue();
++                        orderItemList.remove(orderItem);
++
++
++
++                    }
++                });
++            }
++        });
++
++        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "CLOSE", new DialogInterface.OnClickListener() {
++            public void onClick(DialogInterface dialog, int which) {
++                // Perform Action on Button
++            }
++        });
++
++        new Dialog(getContext());
++        alertDialog.show();
++
++        // Set Properties for OK Button
++        final Button okBT = alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL);
++        LinearLayout.LayoutParams neutralBtnLP = (LinearLayout.LayoutParams) okBT.getLayoutParams();
++        neutralBtnLP.gravity = Gravity.FILL_HORIZONTAL;
++        okBT.setPadding(50, 10, 10, 10);   // Set Position
++        okBT.setTextColor(Color.BLUE);
++        okBT.setLayoutParams(neutralBtnLP);
++
++        final Button cancelBT = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
++        LinearLayout.LayoutParams negBtnLP = (LinearLayout.LayoutParams) okBT.getLayoutParams();
++        negBtnLP.gravity = Gravity.FILL_HORIZONTAL;
++        cancelBT.setTextColor(Color.RED);
++        cancelBT.setLayoutParams(negBtnLP);
++    }
++}
+Index: app/src/main/java/com/example/ultimateorder/waiter/adapters/MealItemAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/ultimateorder/waiter/adapters/MealItemAdapter.java	(date 1576618119688)
++++ app/src/main/java/com/example/ultimateorder/waiter/adapters/MealItemAdapter.java	(date 1576618119688)
+@@ -0,0 +1,81 @@
++package com.example.ultimateorder.waiter.adapters;
++
++import android.content.Context;
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++import android.widget.ArrayAdapter;
++import android.widget.Button;
++import android.widget.TextView;
++import android.widget.Toast;
++
++import com.example.ultimateorder.R;
++import com.example.ultimateorder.client.ui.menu.MenuViewModel;
++import com.example.ultimateorder.model.MealItem;
++import com.google.android.material.snackbar.Snackbar;
++
++import java.util.ArrayList;
++import java.util.List;
++
++public class MealItemAdapter extends ArrayAdapter<MealItem> implements View.OnClickListener {
++
++    private ArrayList<MealItem> mealItems;
++    Context mContext;
++    public List<MealItem> newOrder = new ArrayList<>();
++
++    public MealItemAdapter(ArrayList<MealItem> data, Context context, MenuViewModel menuViewModel) {
++        super(context, R.layout.meal_item_layout, data);
++        this.mealItems = data;
++        this.mContext = context;
++
++    }
++
++    @Override
++    public void onClick(View v) {
++        int position = (Integer) v.getTag();
++        Object object = getItem(position);
++        MealItem MealItem = (MealItem) object;
++
++        switch (v.getId()) {
++            case R.id.name:
++                Snackbar.make(v, "Release date " + MealItem.getIngredients(), Snackbar.LENGTH_LONG)
++                        .setAction("No action", null).show();
++                break;
++        }
++    }
++
++    @Override
++    public View getView(int position, View convertView, ViewGroup parent) {
++        View listItem = convertView;
++        if (listItem == null)
++            listItem = LayoutInflater.from(mContext).inflate(R.layout.meal_item_layout, parent, false);
++
++        MealItem currentM = mealItems.get(position);
++
++        TextView name = (TextView) listItem.findViewById(R.id.name);
++        name.setText(currentM.getName());
++
++        TextView ingredients = (TextView) listItem.findViewById(R.id.ingredients);
++        ingredients.setText(currentM.getIngredients());
++
++        TextView price = (TextView) listItem.findViewById(R.id.price);
++        price.setText(String.valueOf(currentM.getPrice()));
++
++        Button addButton = listItem.findViewById(R.id.addToOrderButton);
++        View finalListItem = listItem;
++        addButton.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                Toast.makeText(getContext(), "Item added to order.",
++                        Toast.LENGTH_SHORT).show();
++
++                newOrder.add(currentM);
++            }
++        });
++
++
++        return listItem;
++    }
++}
++
++
+Index: app/src/main/res/layout/fragment_menu_client.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_menu_client.xml	(revision 97255ed85dc8ce1b8fa5c6c4b3819de861704493)
++++ app/src/main/res/layout/fragment_menu_client.xml	(date 1576771604495)
+@@ -24,19 +24,19 @@
+         android:layout_height="wrap_content"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintHorizontal_bias="1.0"
++        app:layout_constraintHorizontal_bias="0.0"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/text_dashboard"
+-        app:layout_constraintVertical_bias="0.048" />
++        app:layout_constraintVertical_bias="0.188" />
+ 
+     <Button
+         android:id="@+id/addNewOrderButton"
+         android:layout_width="379dp"
+         android:layout_height="50dp"
+         android:text="@string/add_new_order"
+-        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintBottom_toTopOf="@+id/list"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/list"
+-        app:layout_constraintVertical_bias="0.613" />
++        app:layout_constraintTop_toBottomOf="@+id/text_dashboard"
++        app:layout_constraintVertical_bias="0.716" />
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/ultimateorder/client/ui/orders/OrderFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/ultimateorder/client/ui/orders/OrderFragment.java	(revision 97255ed85dc8ce1b8fa5c6c4b3819de861704493)
++++ app/src/main/java/com/example/ultimateorder/client/ui/orders/OrderFragment.java	(date 1576625325181)
+@@ -8,15 +8,18 @@
+ import android.widget.TextView;
+ 
+ import androidx.annotation.NonNull;
++import androidx.annotation.Nullable;
+ import androidx.fragment.app.Fragment;
+ import androidx.lifecycle.Observer;
+ import androidx.lifecycle.ViewModelProviders;
+ 
+ import com.example.ultimateorder.R;
+-import com.example.ultimateorder.adapter.OrderItemAdapter;
++import com.example.ultimateorder.client.adapter.OrderItemAdapter;
+ import com.example.ultimateorder.model.OrderItem;
+ import com.google.android.gms.tasks.OnSuccessListener;
++import com.google.firebase.firestore.EventListener;
+ import com.google.firebase.firestore.FirebaseFirestore;
++import com.google.firebase.firestore.FirebaseFirestoreException;
+ import com.google.firebase.firestore.QuerySnapshot;
+ 
+ import java.util.ArrayList;
+@@ -41,6 +44,24 @@
+                 orderViewModel.setMutableLiveData(mealItems);
+             }
+         });
++        firebaseFirestore.collection("orders").addSnapshotListener(new EventListener<QuerySnapshot>() {
++            @Override
++            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
++                List<OrderItem> orderItems = new ArrayList<>();
++                if(queryDocumentSnapshots != null)
++                    orderItems = queryDocumentSnapshots.toObjects(OrderItem.class);
++                List<OrderItem> newOrderItems = new ArrayList<>();
++                List<OrderItem> finalOrderItems = orderItems;
++                if(orderViewModel.getMutableLiveData().getValue()!=null) {
++                   finalOrderItems.forEach(orderItem -> {
++                        if (!orderViewModel.getMutableLiveData().getValue().contains(orderItem)) {
++                            newOrderItems.add(orderItem);
++                        }
++                    });
++                }
++                orderViewModel.setMutableLiveData(newOrderItems);
++            }
++        });
+ 
+         orderViewModel =
+                 ViewModelProviders.of(this).get(OrderViewModel.class);
+@@ -56,7 +77,7 @@
+         orderViewModel.getMutableLiveData().observe(this, new Observer<List<OrderItem>>() {
+             @Override
+             public void onChanged(List<OrderItem> mealItems) {
+-                OrderItemAdapter adapter = new OrderItemAdapter((ArrayList<OrderItem>) mealItems, getContext());
++                OrderItemAdapter adapter = new OrderItemAdapter((ArrayList<OrderItem>) mealItems, getContext(), orderViewModel);
+                 view.setAdapter(adapter);
+             }
+         });
+Index: app/src/main/java/com/example/ultimateorder/client/ui/menu/MenuFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/ultimateorder/client/ui/menu/MenuFragment.java	(revision 97255ed85dc8ce1b8fa5c6c4b3819de861704493)
++++ app/src/main/java/com/example/ultimateorder/client/ui/menu/MenuFragment.java	(date 1576618119616)
+@@ -15,9 +15,8 @@
+ import androidx.lifecycle.Observer;
+ import androidx.lifecycle.ViewModelProviders;
+ 
+-import com.example.ultimateorder.MainActivity;
+ import com.example.ultimateorder.R;
+-import com.example.ultimateorder.adapter.MealItemAdapter;
++import com.example.ultimateorder.client.adapter.MealItemAdapter;
+ import com.example.ultimateorder.model.MealItem;
+ import com.example.ultimateorder.model.OrderItem;
+ import com.example.ultimateorder.repo.MealItemRepo;
+@@ -71,7 +70,7 @@
+         menuViewModel.getmMealItems().observe(this, new Observer<List<MealItem>>() {
+             @Override
+             public void onChanged(List<MealItem> mealItems) {
+-                adapter = new MealItemAdapter((ArrayList<MealItem>) mealItems,getContext());
++                adapter = new MealItemAdapter((ArrayList<MealItem>) mealItems,getContext(),menuViewModel);
+                 view.setAdapter(adapter);
+ 
+             }
+Index: app/src/main/java/com/example/ultimateorder/waiter/ui/home/HomeViewModel.java
+===================================================================
+--- app/src/main/java/com/example/ultimateorder/waiter/ui/home/HomeViewModel.java	(revision 97255ed85dc8ce1b8fa5c6c4b3819de861704493)
++++ app/src/main/java/com/example/ultimateorder/waiter/ui/home/OrderViewModel.java	(date 1576618119838)
+@@ -6,12 +6,12 @@
+ import com.example.ultimateorder.model.OrderItem;
+ import java.util.List;
+ 
+-public class HomeViewModel extends ViewModel {
++public class OrderViewModel extends ViewModel {
+ 
+     private MutableLiveData<String> mText;
+     private MutableLiveData<List<OrderItem>> mOrderItems;
+ 
+-    public HomeViewModel() {
++    public OrderViewModel() {
+         mOrderItems = new MutableLiveData<>();
+         mText = new MutableLiveData<>();
+         mText.setValue("This is orders fragment");
+Index: app/src/main/java/com/example/ultimateorder/model/Employee.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/ultimateorder/model/Employee.java	(revision 97255ed85dc8ce1b8fa5c6c4b3819de861704493)
++++ app/src/main/java/com/example/ultimateorder/model/Employee.java	(date 1576606170944)
+@@ -16,6 +16,7 @@
+ 
+     public void setType(String type) {
+         this.type = type;
++    }
+ 
+     public Integer getId() {
+         return id;
+Index: app/src/main/java/com/example/ultimateorder/waiter/ui/home/HomeFragment.java
+===================================================================
+--- app/src/main/java/com/example/ultimateorder/waiter/ui/home/HomeFragment.java	(revision 97255ed85dc8ce1b8fa5c6c4b3819de861704493)
++++ app/src/main/java/com/example/ultimateorder/waiter/ui/home/OrderFragment.java	(date 1576618119655)
+@@ -16,9 +16,8 @@
+ import androidx.lifecycle.ViewModelProviders;
+ 
+ import com.example.ultimateorder.R;
+-import com.example.ultimateorder.adapter.OrderItemAdapter;
+ import com.example.ultimateorder.model.OrderItem;
+-import com.example.ultimateorder.repo.OrderItemRepo;
++import com.example.ultimateorder.waiter.adapters.OrderItemAdapter;
+ import com.google.android.gms.tasks.OnSuccessListener;
+ import com.google.firebase.firestore.DocumentChange;
+ import com.google.firebase.firestore.EventListener;
+@@ -29,17 +28,16 @@
+ import java.util.ArrayList;
+ import java.util.List;
+ 
+-public class HomeFragment extends Fragment {
++public class OrderFragment extends Fragment {
+     private static final String TAG = "Orders Fragment";
+ 
+-    private OrderItemRepo repo = new OrderItemRepo();
+-    private HomeViewModel homeViewModel;
++    private OrderViewModel orderViewModel;
+     private FirebaseFirestore firebaseFirestore;
+ 
+     public View onCreateView(@NonNull LayoutInflater inflater,
+                              ViewGroup container, Bundle savedInstanceState) {
+-        homeViewModel =
+-                ViewModelProviders.of(this).get(HomeViewModel.class);
++        orderViewModel =
++                ViewModelProviders.of(this).get(OrderViewModel.class);
+ 
+         firebaseFirestore = FirebaseFirestore.getInstance();
+         firebaseFirestore.collection("orders").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+@@ -47,14 +45,14 @@
+             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                 List<OrderItem> orderItems = new ArrayList<>();
+                 orderItems.addAll(queryDocumentSnapshots.toObjects(OrderItem.class));
+-                homeViewModel.setmOrderItems(orderItems);
++                orderViewModel.setmOrderItems(orderItems);
+             }
+         });
+ 
+         View root = inflater.inflate(R.layout.order_fragment_waiter, container, false);
+         final TextView textView = root.findViewById(R.id.text_home);
+ 
+-        homeViewModel.getText().observe(this, new Observer<String>() {
++        orderViewModel.getText().observe(this, new Observer<String>() {
+             @Override
+             public void onChanged(@Nullable String s) {
+                 textView.setText(s);
+@@ -62,10 +60,10 @@
+         });
+ 
+         final ListView view = root.findViewById(R.id.list);
+-        homeViewModel.getmOrderItems().observe(this, new Observer<List<OrderItem>>() {
++        orderViewModel.getmOrderItems().observe(this, new Observer<List<OrderItem>>() {
+             @Override
+             public void onChanged(List<OrderItem> orderItems) {
+-                OrderItemAdapter adapter = new OrderItemAdapter((ArrayList<OrderItem>) orderItems,getContext());
++                OrderItemAdapter adapter = new OrderItemAdapter((ArrayList<OrderItem>) orderItems,getContext(),orderViewModel);
+                 view.setAdapter(adapter);
+             }
+         });
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/vcs.xml	(date 1576603418544)
++++ .idea/vcs.xml	(date 1576603418544)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: app/src/main/java/com/example/ultimateorder/adapter/MealItemAdapter.java
+===================================================================
+--- app/src/main/java/com/example/ultimateorder/adapter/MealItemAdapter.java	(revision 97255ed85dc8ce1b8fa5c6c4b3819de861704493)
++++ app/src/main/java/com/example/ultimateorder/client/adapter/MealItemAdapter.java	(date 1576618119722)
+@@ -1,4 +1,4 @@
+-package com.example.ultimateorder.adapter;
++package com.example.ultimateorder.client.adapter;
+ 
+ import android.content.Context;
+ import android.view.LayoutInflater;
+@@ -9,8 +9,8 @@
+ import android.widget.TextView;
+ import android.widget.Toast;
+ 
+-import com.example.ultimateorder.MainActivity;
+ import com.example.ultimateorder.R;
++import com.example.ultimateorder.client.ui.menu.MenuViewModel;
+ import com.example.ultimateorder.model.MealItem;
+ import com.google.android.material.snackbar.Snackbar;
+ 
+@@ -23,7 +23,7 @@
+     Context mContext;
+     public List<MealItem> newOrder = new ArrayList<>();
+ 
+-    public MealItemAdapter(ArrayList<MealItem> data, Context context) {
++    public MealItemAdapter(ArrayList<MealItem> data, Context context, MenuViewModel menuViewModel) {
+         super(context, R.layout.meal_item_layout, data);
+         this.mealItems = data;
+         this.mContext = context;
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/strings.xml	(revision 97255ed85dc8ce1b8fa5c6c4b3819de861704493)
++++ app/src/main/res/values/strings.xml	(date 1576764514085)
+@@ -27,5 +27,6 @@
+     <string name="tables">Tables</string>
+ 
+     <string name="add_new_order">Add New Order</string>
++    <string name="add_reservation">Add Reservation</string>
+ 
+ </resources>
+Index: app/src/main/java/com/example/ultimateorder/adapter/ReservationItemAdapter.java
+===================================================================
+--- app/src/main/java/com/example/ultimateorder/adapter/ReservationItemAdapter.java	(revision 97255ed85dc8ce1b8fa5c6c4b3819de861704493)
++++ app/src/main/java/com/example/ultimateorder/client/adapter/ReservationItemAdapter.java	(date 1576618119890)
+@@ -1,4 +1,4 @@
+-package com.example.ultimateorder.adapter;
++package com.example.ultimateorder.client.adapter;
+ 
+ import android.annotation.SuppressLint;
+ import android.content.Context;
+Index: app/src/main/java/com/example/ultimateorder/adapter/OrderItemAdapter.java
+===================================================================
+--- app/src/main/java/com/example/ultimateorder/adapter/OrderItemAdapter.java	(revision 97255ed85dc8ce1b8fa5c6c4b3819de861704493)
++++ app/src/main/java/com/example/ultimateorder/client/adapter/OrderItemAdapter.java	(date 1576626138122)
+@@ -1,4 +1,4 @@
+-package com.example.ultimateorder.adapter;
++package com.example.ultimateorder.client.adapter;
+ 
+ import android.annotation.SuppressLint;
+ import android.app.AlertDialog;
+@@ -16,23 +16,37 @@
+ import android.widget.TextView;
+ 
+ import com.example.ultimateorder.R;
++import com.example.ultimateorder.client.ui.orders.OrderViewModel;
++import com.example.ultimateorder.model.MealItem;
+ import com.example.ultimateorder.model.OrderItem;
++import com.google.android.gms.tasks.OnSuccessListener;
++import com.google.firebase.firestore.CollectionReference;
++import com.google.firebase.firestore.DocumentReference;
++import com.google.firebase.firestore.DocumentSnapshot;
++import com.google.firebase.firestore.FirebaseFirestore;
++import com.google.firebase.firestore.QuerySnapshot;
+ 
+ import java.util.ArrayList;
++import java.util.List;
++import java.util.Map;
++import java.util.concurrent.atomic.AtomicBoolean;
++import java.util.concurrent.atomic.AtomicReference;
+ 
+ public class OrderItemAdapter extends ArrayAdapter<OrderItem> implements View.OnClickListener {
+     private ArrayList<OrderItem> OrderItems;
+     Context mContext;
++    OrderViewModel orderViewModel;
+ 
+-    public OrderItemAdapter(ArrayList<OrderItem> data, Context context) {
++    public OrderItemAdapter(ArrayList<OrderItem> data, Context context, OrderViewModel orderViewModel) {
+         super(context, R.layout.orders_item_layout, data);
+         this.OrderItems = data;
+         this.mContext = context;
++        this.orderViewModel = orderViewModel;
+     }
+ 
+     @Override
+     public void onClick(View v) {
+-        openDialog();
++        openDialog(this.orderViewModel,v);
+     }
+ 
+     @SuppressLint("SetTextI18n")
+@@ -55,8 +69,7 @@
+         return listItem;
+     }
+ 
+-    public void openDialog() {
+-
++    public void openDialog(OrderViewModel orderViewModel, View view) {
+         AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
+ 
+         // Set Custom Title
+@@ -72,20 +85,89 @@
+         // Set Message
+         TextView msg = new TextView(getContext());
+         // Message Properties
+-        //msg.setText("Order: " + orderItem.getId() + "\n" + "Total Price: " + orderItem.getPrice() + "\n");
+         msg.setGravity(Gravity.CENTER_HORIZONTAL);
+         msg.setTextColor(Color.BLACK);
++        msg.setText("");
++        //TODO: Fix problem with ID being sometimes making the app crash because of string length.
++        String s = "order" + ((TextView)view.findViewById(R.id.id))
++                .getText()
++                .subSequence(7,16).toString();
++        FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
++        firebaseFirestore.collection("orders").document(s).collection("mealItems").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
++            @Override
++            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
++                queryDocumentSnapshots.forEach(queryDocumentSnapshot -> {
++                    DocumentReference reference = queryDocumentSnapshot.getDocumentReference("meal");
++                    reference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
++                        @Override
++                        public void onSuccess(DocumentSnapshot documentSnapshot) {
++                            MealItem mealItem = documentSnapshot.toObject(MealItem.class);
++                            msg.setText(msg.getText()+"\n"+mealItem.getName());
++                        }
++                    });
++                });
++            }
++        });
++        //msg.setText("Order: " + orderItem.getId() + "\n" + "Total Price: " + orderItem.getPrice() + "\n");
+         alertDialog.setView(msg);
+ 
+         // Set Button
+         // you can more buttons
+-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK", new DialogInterface.OnClickListener() {
++        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "CANCEL", new DialogInterface.OnClickListener() {
+             public void onClick(DialogInterface dialog, int which) {
+                 // Perform Action on Button
+-            }
+-        });
++                final boolean[] booleans = {false};
++                FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
++                String s = "order" + ((TextView)view.findViewById(R.id.id))
++                        .getText()
++                        .subSequence(7,16).toString();
++                CollectionReference collectionReference = firebaseFirestore.collection("orders").document(s).collection("mealItems");
++                collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
++                    @Override
++                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
++                        queryDocumentSnapshots.forEach(queryDocumentSnapshot -> {
++                            DocumentReference reference = queryDocumentSnapshot.getReference();
++                            reference.delete();
++                        });
++                        firebaseFirestore
++                                .collection("orders")
++                                .document("order" + ((TextView)view.findViewById(R.id.id))
++                                        .getText()
++                                        .subSequence(7,16)).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
++                            @Override
++                            public void onSuccess(Void aVoid) {
++                                AtomicReference<OrderItem> orderItem = new AtomicReference<>(new OrderItem());
++                                orderItem.get().setId((Integer.valueOf(((TextView)view.findViewById(R.id.id))
++                                        .getText()
++                                        .subSequence(7,16).toString())));
++                                orderItem.get().setPrice(Float.valueOf(((TextView)view.findViewById(R.id.price))
++                                        .getText()
++                                        .subSequence(7,12).toString()));
++                                List<OrderItem> orderItemList = orderViewModel.getMutableLiveData()
++                                        .getValue();
++                                AtomicBoolean ok = new AtomicBoolean(false);
++                                orderItemList.forEach(orderItem1 -> {
++                                    int id1 = orderItem.get().getId();
++                                    int id2 = orderItem1.getId();
++                                    if(id1 == id2) {
++                                        ok.set(true);
++                                        orderItem.set(orderItem1);
++                                    }
++                                });
++                                if(ok.get())
++                                    orderItemList.remove(orderItem.get());
++                                orderViewModel.getMutableLiveData().setValue(orderItemList);
++                            }
++                        });
++
++                    }
++                });
+ 
+-        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "CANCEL", new DialogInterface.OnClickListener() {
++
++            }
++        });
++
++        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "CLOSE", new DialogInterface.OnClickListener() {
+             public void onClick(DialogInterface dialog, int which) {
+                 // Perform Action on Button
+             }
