@@ -16,9 +16,9 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.ultimateorder.R;
-import com.example.ultimateorder.adapter.OrderItemAdapter;
 import com.example.ultimateorder.model.OrderItem;
 import com.example.ultimateorder.repo.OrderItemRepo;
+import com.example.ultimateorder.waiter.adapters.OrderItemAdapter;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
@@ -57,7 +57,7 @@ public class OrdersFragment extends Fragment {
         ordersViewModel.getmOrderItems().observe(this, new Observer<List<OrderItem>>() {
             @Override
             public void onChanged(List<OrderItem> orderItems) {
-                OrderItemAdapter adapter = new OrderItemAdapter((ArrayList<OrderItem>) orderItems,getContext());
+                OrderItemAdapter adapter = new OrderItemAdapter((ArrayList<OrderItem>) orderItems,getContext(), ordersViewModel);
                 view.setAdapter(adapter);
             }
         });
