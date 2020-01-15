@@ -156,5 +156,6 @@ public class TableItemAdapter extends ArrayAdapter<TableItem> implements View.On
                         alertDialog.create().show();
                     }
                 });
+        notifyDataSetChanged();
     }
 }

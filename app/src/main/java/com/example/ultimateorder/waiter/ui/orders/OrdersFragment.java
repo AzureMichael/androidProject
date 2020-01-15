@@ -17,10 +17,12 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.ultimateorder.R;
 import com.example.ultimateorder.model.OrderItem;
+import com.example.ultimateorder.model.TableItem;
 import com.example.ultimateorder.repo.OrderItemRepo;
 import com.example.ultimateorder.waiter.adapters.OrderItemAdapter;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -75,8 +77,16 @@ public class OrdersFragment extends Fragment {
 
                         for(DocumentChange dc : queryDocumentSnapshots.getDocumentChanges()) {
                             if(dc.getType() == DocumentChange.Type.ADDED) {
-                                Toast.makeText(getContext(), "New order: " + dc.getDocument().getData(), Toast.LENGTH_LONG).show();
-                                Log.d(TAG, "New order: " + dc.getDocument().getData());
+                                //Toast.makeText(getContext(), "New order: " + dc.getDocument().getData(), Toast.LENGTH_LONG).show();
+                                OrderItem item = dc.getDocument().toObject(OrderItem.class);
+                                item.getTable().get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                        TableItem tableItem = documentSnapshot.toObject(TableItem.class);
+                                        Log.d(TAG, "New order: " + dc.getDocument().getData());
+                                        Toast.makeText(getContext(), "New order! (Table" + tableItem.getId() + ")", Toast.LENGTH_LONG).show();
+                                    }
+                                });
                             }
                         }
                     }

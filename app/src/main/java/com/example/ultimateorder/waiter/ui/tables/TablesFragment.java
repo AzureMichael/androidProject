@@ -63,6 +63,7 @@ public class TablesFragment extends Fragment {
             public void onChanged(List<TableItem> tableItems) {
                 TableItemAdapter adapter = new TableItemAdapter((ArrayList<TableItem>)tableItems,getContext());
                 view.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
             }
         });
 
