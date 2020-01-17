@@ -1,19 +1,18 @@
 package com.example.ultimateorder.model;
 
-import androidx.annotation.NonNull;
-
-import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
 
 public class OrderItem {
     private Integer id;
     private DocumentReference table;
     private float price;
+    private boolean confirmed;
 
-    public OrderItem(Integer id, DocumentReference table, float price) {
+    public OrderItem(Integer id, DocumentReference table, float price, boolean confirmed) {
         this.id = id;
         this.table = table;
         this.price = price;
+        this.confirmed = confirmed;
     }
 
     public OrderItem() {
@@ -41,5 +40,13 @@ public class OrderItem {
 
     public void setPrice(float price) {
         this.price = price;
+    }
+
+    public boolean isConfirmed() {
+        return confirmed;
+    }
+
+    public void setConfirmed(boolean confirmed) {
+        this.confirmed = confirmed;
     }
 }

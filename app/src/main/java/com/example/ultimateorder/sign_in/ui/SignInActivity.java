@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.ultimateorder.R;
+import com.example.ultimateorder.kitchen.KitchenActivity;
 import com.example.ultimateorder.model.Employee;
 import com.example.ultimateorder.waiter.WaiterActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -78,6 +79,10 @@ public class SignInActivity extends AppCompatActivity {
                                             Log.d(TAG, "Employee type: " + type.get());
                                             if(type.get().equals("waiter")) {
                                                 Intent intent = new Intent(getBaseContext(), WaiterActivity.class);
+                                                startActivity(intent);
+                                            }
+                                            if(type.get().equals("kitchen")) {
+                                                Intent intent = new Intent(getBaseContext(), KitchenActivity.class);
                                                 startActivity(intent);
                                             }
                                         }
