@@ -40,7 +40,9 @@
         android:layout_marginStart="107dp"
         android:layout_marginTop="21dp"
         android:layout_toEndOf="@+id/price"
-        android:text="+" />
+        android:background="#975A3F"
+        android:text="+"
+        android:textColor="#ffffff" />
 
 
 </RelativeLayout>

@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#E6E0D2">
 
     <TextView
         android:id="@+id/text_dashboard"
@@ -34,7 +35,9 @@
         android:id="@+id/addNewOrderButton"
         android:layout_width="379dp"
         android:layout_height="50dp"
+        android:backgroundTint="#975A3F"
         android:text="@string/add_new_order"
+        android:textColor="#ffffff"
         app:layout_constraintBottom_toTopOf="@+id/list"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

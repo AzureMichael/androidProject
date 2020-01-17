@@ -3,16 +3,17 @@
 
     <item
         android:id="@+id/navigation_orders"
-        android:icon="@drawable/waiteroriginalsize"
+        android:icon="@drawable/orders_icon"
         android:title="@string/orders" />
 
     <item
         android:id="@+id/navigation_tables"
-        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:icon="@drawable/food_menu"
         android:title="@string/menu" />
 
     <item
         android:id="@+id/navigation_reservations"
+        android:icon="@drawable/reservations_icon"
         android:title="@string/reservations" />
 
 </menu>

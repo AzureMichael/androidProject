@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#E6E0D2">
 
     <TextView
         android:id="@+id/text_reservations"
@@ -22,7 +23,9 @@
         android:id="@+id/addReservationButton"
         android:layout_width="393dp"
         android:layout_height="45dp"
+        android:backgroundTint="#975A3F"
         android:text="Add Reservation"
+        android:textColor="#ffffff"
         app:layout_constraintBottom_toTopOf="@+id/list"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
