@@ -50,12 +50,16 @@
         android:id="@+id/addReservationBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add Reservation" />
+        android:backgroundTint="#975A3F"
+        android:text="Add Reservation"
+        android:textColor="#ffffff" />
 
     <Button
         android:id="@+id/closeReservationDialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="close" />
+        android:backgroundTint="#975A3F"
+        android:text="close"
+        android:textColor="#ffffff" />
 
 </LinearLayout>
