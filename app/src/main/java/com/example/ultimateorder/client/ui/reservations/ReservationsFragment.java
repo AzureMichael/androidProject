@@ -68,7 +68,7 @@ public class ReservationsFragment extends Fragment {
         reservationsViewModel =
                 ViewModelProviders.of(this).get(ReservationsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_reservations_client, container, false);
-        final TextView textView = root.findViewById(R.id.text_notifications);
+        final TextView textView = root.findViewById(R.id.text_reservations);
         reservationsViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
